@@ -1,1 +1,47 @@
 {% extends "index.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <title>Modificar Producto</title>
+    <link rel="stylesheet" href="{% static 'css/alta.css' %}">
+{% endblock %}
+
+{% block contenido %}
+    <h2>Modificar Producto</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ producto.id }}">
+
+        <!-- Nombre -->
+        <label for="nombre">Nombre del producto:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ producto.nombre }}" required>
+
+        <!-- Descripción -->
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" rows="3" required>{{ producto.descripcion }}</textarea>
+
+        <!-- Precio -->
+        <label for="precio">Precio ($):</label>
+        <input type="number" id="precio" name="precio" step="0.01" value="{{ producto.precio }}" required>
+
+        <!-- Stock -->
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" name="stock" value="{{ producto.stock }}" required>
+
+        <!-- Sección -->
+        <label for="seccion">Sección:</label>
+        <select id="seccion" name="seccion">
+            <option value="">-- Sin sección --</option>
+            {% for seccion in secciones %}
+                <option value="{{ seccion.id }}" {% if producto.seccion_id == seccion.id %}selected{% endif %}>
+                    {{ seccion.nombre }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <!-- Botones -->
+        <button type="submit" class="neon-btn">Actualizar Producto</button>
+        <a href="{% url 'productos_url' %}" class="neon-link">Cancelar</a>
+    </form>
+{% endblock %}

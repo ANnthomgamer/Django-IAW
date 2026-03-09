@@ -18,11 +18,13 @@
                 <p><strong>Dirección:</strong> {{ cliente.direccion|default:"No especificada" }}</p>
                 <p><small>Registrado: {{ cliente.fecha_registro|date:"d/m/Y" }}</small></p>
             </div>
+            <a href="{% url 'usuarios_modificar' %}?id={{ cliente.id }}" class="neon-btn" style="margin-top: 10px; display: inline-block;">Modificar</a>
             {% endfor %}
         {% else %}
             <p>No hay clientes registrados</p>
         {% endif %}
         
         <a href="{% url 'usuarios_alta' %}" class="neon-link">+ Nuevo Cliente</a>
+
     </article>
 {% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.template import Template, Context
 from .models import Producto # Importar el modelo
@@ -53,6 +53,45 @@ def productos_alta_views(request):
 
 
 def productos_modificar_views(request):
-    return render(request, 'productos/modificar.html')
+    """Modificar un producto existente"""
+    
+    # Obtener el ID del producto
+    producto_id = request.GET.get('id') or request.POST.get('id')
+    
+    if not producto_id:
+        return redirect('productos_url')
+    
+    # Obtener el producto
+    producto = get_object_or_404(Producto, id=producto_id)
+    
+    if request.method == 'POST':
+        # Recoger datos
+        nombre = request.POST.get('nombre')
+        descripcion = request.POST.get('descripcion')
+        precio = request.POST.get('precio')
+        stock = request.POST.get('stock')
+        seccion_id = request.POST.get('seccion')
+        
+        # Actualizar producto
+        producto.nombre = nombre
+        producto.descripcion = descripcion
+        producto.precio = precio
+        producto.stock = stock
+        if seccion_id:
+            producto.seccion_id = seccion_id
+        else:
+            producto.seccion = None
+        producto.save()
+        
+        return redirect('productos_url')
+    
+    # Si es GET, mostrar formulario con datos
+    secciones = Seccion.objects.all().order_by('nombre')
+    datos = {
+        'producto': producto,
+        'secciones': secciones
+    }
+    return render(request, 'productos/modificar.html', datos)
+
 
 

@@ -18,6 +18,7 @@
                 <span class="precio">${{ producto.precio }}</span>
                 <p>Stock: {{ producto.stock }}</p>
             </div>
+            <a href="{% url 'productos_modificar' %}?id={{ producto.id }}" class="neon-btn" style="margin-top: 10px; display: inline-block;">Modificar</a>
             {% endfor %}
         {% else %}
             <p>No hay productos registrados</p>
@@ -29,4 +30,5 @@
     
 
 {% endblock %}
+
 
