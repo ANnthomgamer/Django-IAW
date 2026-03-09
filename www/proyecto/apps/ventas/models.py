@@ -10,7 +10,7 @@ class Venta(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='ventas')  # PRODUCTO
     precio_producto = models.DecimalField(max_digits=10, decimal_places=2)  # PRECIO (podría ser el del producto en ese momento)
     cantidad = models.PositiveIntegerField()  # CANTIDAD
-    fecha = models.DateTimeField(auto_now_add=True)  # FECHA (automática al crear)
+    fecha = models.DateTimeField()  # FECHA (automática al crear)
     
     @property
     def total(self):

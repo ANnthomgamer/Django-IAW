@@ -73,15 +73,25 @@ def ventas_alta_views(request):
         producto = Producto.objects.get(id=producto_id)
         precio = producto.precio
         
+        # Fecha
+        fecha_str = request.POST.get('fecha')
+        if fecha_str:
+            fecha = datetime.strptime(fecha_str, '%Y-%m-%d')
+        else:
+            fecha = timezone.now()
+
         # Crear venta
-        Venta.objects.create(
+        venta = Venta(
             codigo_venta=codigo,
             cliente_id=cliente_id,
             producto_id=producto_id,
             precio_producto=precio,
-            cantidad=cantidad
+            cantidad=cantidad,
         )
         
+        venta.fecha = fecha
+        venta.save()
+
         return redirect('ventas_url')
     
     # Si es GET, mostrar formulario con clientes y productos

@@ -37,6 +37,11 @@
         <label for="cantidad">Cantidad:</label>
         <input type="number" id="cantidad" name="cantidad" min="1" required>
 
+	<!-- Fecha (Si se deja vacío es current date) -->
+        <label for="fecha">Fecha de venta:</label>
+        <input type="date" id="fecha" name="fecha" value="{% now 'Y-m-d' %}">
+        <small style="color: var(--neon-cyan);">(Si se deja vacío, se usará la fecha actual)</small>
+
         <!-- Información del precio (se actualizará con JS) -->
         <div class="precio-info" id="info-precio">
             Precio unitario: $0.00 | Total: $0.00
