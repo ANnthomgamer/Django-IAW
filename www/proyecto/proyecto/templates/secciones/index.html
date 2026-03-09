@@ -1,1 +1,26 @@
 {% extends "index.html" %}
+
+{% block titulo %}Secciones del Sistema{% endblock %}
+
+{% block contenido %}
+    <h2 style="color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan);">
+        > GESTIÓN DE SECCIONES
+    </h2>
+
+    <article>
+        <p>{{ parrafo }}</p>
+
+        {% if secciones %}
+            {% for seccion in secciones %}
+            <div class="producto-card"> <!-- Reutilizamos estilo -->
+                <h3>{{ seccion.nombre }}</h3>
+                <p>{{ seccion.descripcion|default:"Sin descripción" }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No hay secciones registradas</p>
+        {% endif %}
+        
+        <a href="{% url 'secciones_alta' %}" class="neon-link">+ Nueva Sección</a>
+    </article>
+{% endblock %}
