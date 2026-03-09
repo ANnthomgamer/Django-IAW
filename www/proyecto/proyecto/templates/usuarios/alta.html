@@ -3,29 +3,46 @@
 
 
 {% block extra_css %}
-    <title>Crear sección</title>
+    <title>Añadir cliente</title>
     <link rel="stylesheet" href="{% static 'css/alta.css' %}">
 {% endblock %}
 
 
 {% block contenido %}
-    <h2>Añadir nueva sección</h2>
+    <h2>Añadir nuevo cliente</h2>
     <form method="post">
         {% csrf_token %}
         
-        <!-- Nombre del Producto -->
-        <label for="nombre_producto">Nombre de la sección</label>
-        <input type="text" id="nombre_seccion" name="nombre_seccion" placeholder="Nombre de la seccion" required>
-        
-        <br><br>
-        
-        <!-- Descripción del Producto -->
-        <label for="descripcion">Descripción de la sección:</label>
-        <textarea id="descripcion" name="descripcion" rows="3" cols="20" placeholder="Escribe aquí los detalles..." required></textarea>
+        <!-- Nombre del cliente -->
+        <label for="nombre">Nombre del cliente</label>
+        <input type="text" id="nombre" name="nombre" placeholder="John Doe" required>
         
         <br><br>
 
+	<!-- Email -->
+	<label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="cliente@email.com" required>
+
+        <br><br>
+
+        <!-- Teléfono -->
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000">
+
+        <br><br>
+
+        <!-- Dirección -->
+        <label for="direccion">Dirección:</label>
+        <textarea id="direccion" name="direccion" rows="3" placeholder="Calle, número, ciudad..."></textarea>
+
+        <br><br>
+        
+        <br><br>
         <!-- Botón de enviar -->
         <button type="submit" class="neon-btn">Guardar</button>
+        <br>
+        <a href="{% url 'usuarios_url' %}" class="neon-link">← Volver al listado</a>
+	
+
     </form>
 {% endblock %}

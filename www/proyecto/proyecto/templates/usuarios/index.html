@@ -1,1 +1,28 @@
 {% extends "index.html" %}
+{% block titulo %}Clientes del Sistema{% endblock %}
+
+{% block contenido %}
+    <h2 style="color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan);">
+        > GESTIÓN DE CLIENTES
+    </h2>
+
+    <article>
+        <p>{{ parrafo }}</p>
+
+        {% if clientes %}
+            {% for cliente in clientes %}
+            <div class="producto-card">
+                <h3>{{ cliente.nombre }}</h3>
+                <p><strong>Email:</strong> {{ cliente.email }}</p>
+                <p><strong>Teléfono:</strong> {{ cliente.telefono|default:"No especificado" }}</p>
+                <p><strong>Dirección:</strong> {{ cliente.direccion|default:"No especificada" }}</p>
+                <p><small>Registrado: {{ cliente.fecha_registro|date:"d/m/Y" }}</small></p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No hay clientes registrados</p>
+        {% endif %}
+        
+        <a href="{% url 'usuarios_alta' %}" class="neon-link">+ Nuevo Cliente</a>
+    </article>
+{% endblock %}
