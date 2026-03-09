@@ -1,0 +1,65 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block titulo %}🎮 Modo Secreto Activado{% endblock %}
+
+{% block extra_css %}
+    <style>
+        .easter-container {
+            text-align: center;
+            animation: glitch 3s infinite;
+        }
+        .easter-container img {
+            border: 3px solid var(--neon-pink);
+            box-shadow: 0 0 50px var(--neon-pink);
+            max-width: 90%;
+            margin: 30px auto;
+            border-radius: 10px;
+            transition: all 0.5s;
+        }
+        .easter-container img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 80px var(--neon-cyan);
+            border-color: var(--neon-cyan);
+        }
+        .glitch-text {
+            font-size: 3rem;
+            color: var(--neon-pink);
+            text-shadow: 
+                2px 0 var(--neon-cyan),
+                -2px 0 var(--neon-cyan);
+            animation: glitch 1s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        .firma-secreta {
+            color: #666;
+            font-family: 'Courier New', monospace;
+            margin-top: 50px;
+            opacity: 0.7;
+        }
+    </style>
+{% endblock %}
+
+{% block contenido %}
+    <div class="easter-container">
+        <h1 class="glitch-text">🎮 EASTER EGG 🎮</h1>
+        <h2 style="color: var(--neon-cyan);">¡Has descubierto el secreto!</h2>
+        
+        <img src="{% static 'images/easter_egg.jpg' %}" alt="Easter Egg">
+        
+        <div class="firma-secreta">
+            <p>➤➤➤ JUAN ANTONIO GIL ALBA - 2ASIR 2026 ◀︎◀︎◀︎</p>
+            <p style="font-size: 0.8rem;">{system.breach.detected}</p>
+        </div>
+        
+        <br>
+        <a href="/" class="neon-link">← Volver a la realidad</a>
+    </div>
+{% endblock %}

@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apps.inicio.views import saludo
+from apps.inicio.views import saludo, easter_egg
 from apps.ventas.views import ventas_views, ventas_alta_views
 from apps.productos.views import productos_views, productos_alta_views, productos_modificar_views
 from apps.secciones.views import secciones_views, secciones_alta_views, secciones_modificar_views
@@ -41,4 +41,6 @@ urlpatterns = [
     path('usuarios/', usuarios_views, name='usuarios_url'),
     path('usuarios/alta', usuarios_alta_views, name='usuarios_alta'),
     path('usuarios/modificar', usuarios_modificar_views, name='usuarios_modificar'),
+
+    path('easter_egg', easter_egg),
 ]

@@ -16,3 +16,6 @@ def saludo(request):
     
     return HttpResponse(documento)
 
+def easter_egg(request):
+
+    return render(request, 'easter_egg.html')
