@@ -6,8 +6,10 @@
     <title>Listado de Ventas</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/ventas.css' %}">
+    <script src="{% static 'js/orden_ventas.js' %}"></script>
 
 {% endblock %}
+
 
 
 {% block contenido %}
@@ -16,54 +18,57 @@
     </h2>
     <p>{{ parrafo }}</p>
 
-        <!-- Filtros por fecha -->
-        <div class="filtros">
-            <form method="get" style="display: flex; gap: 20px; width: 100%; flex-wrap: wrap;">
-                <div>
-                    <label>Fecha desde:</label>
-                    <input type="date" name="fecha_desde" value="{{ fecha_desde }}">
-                </div>
-                <div>
-                    <label>Fecha hasta:</label>
-                    <input type="date" name="fecha_hasta" value="{{ fecha_hasta }}">
-                </div>
-                <button type="submit">Filtrar</button>
-                <a href="{% url 'ventas_url' %}" class="neon-link" style="padding: 8px 20px;">Limpiar</a>
-            </form>
-        </div>
+    <!-- Filtros por fecha -->
+    <div class="filtros">
+        <form method="get" style="display: flex; gap: 20px; width: 100%; flex-wrap: wrap;">
+            <div>
+                <label>Fecha desde:</label>
+                <input type="date" name="fecha_desde" value="{{ fecha_desde }}">
+            </div>
+            <div>
+                <label>Fecha hasta:</label>
+                <input type="date" name="fecha_hasta" value="{{ fecha_hasta }}">
+            </div>
+            <button type="submit">Filtrar</button>
+            <a href="{% url 'ventas_url' %}" class="neon-link" style="padding: 8px 20px;">Limpiar</a>
+        </form>
+    </div>
 
-        {% if ventas %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Cliente</th>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio Unit.</th>
-                    <th>Total</th>
-                    <th>Fecha</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for venta in ventas %}
-                <tr>
-                    <td>{{ venta.codigo_venta }}</td>
-                    <td>{{ venta.cliente.nombre }}</td>
-                    <td>{{ venta.producto.nombre }}</td>
-                    <td>{{ venta.cantidad }}</td>
-                    <td>${{ venta.precio_producto }}</td>
-                    <td class="total-venta">${{ venta.total }}</td>
-                    <td>{{ venta.fecha|date:"d/m/Y H:i" }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% else %}
-            <p>No hay ventas registradas</p>
-        {% endif %}
-        
-        <br>
-        <a href="{% url 'ventas_alta' %}" class="neon-link">+ Nueva Venta</a>
-    </article>
+    {% if ventas %}
+    <table>
+        <thead>
+            <tr>
+                <th onclick="ordenarTabla(0)">Código</th>
+                <th onclick="ordenarTabla(1)">Cliente</th>
+                <th onclick="ordenarTabla(2)">Producto</th>
+                <th onclick="ordenarTabla(3)">Cantidad</th>
+                <th onclick="ordenarTabla(4)">Precio Unit.</th>
+                <th onclick="ordenarTabla(5)">Total</th>
+                <th onclick="ordenarTabla(6)">Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for venta in ventas %}
+            <tr>
+                <td>{{ venta.codigo_venta }}</td>
+                <td>{{ venta.cliente.nombre }}</td>
+                <td>{{ venta.producto.nombre }}</td>
+                <td>{{ venta.cantidad }}</td>
+                <td>${{ venta.precio_producto }}</td>
+                <td class="total-venta">${{ venta.total }}</td>
+                <td>{{ venta.fecha|date:"d/m/Y H:i" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No hay ventas registradas</p>
+    {% endif %}
+
+    <br>
+    <a href="{% url 'ventas_alta' %}" class="neon-link">+ Nueva Venta</a>
+    
 {% endblock %}
+
+
+

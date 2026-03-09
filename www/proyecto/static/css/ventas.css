@@ -53,6 +53,20 @@ th {
     padding: 12px;
     text-align: left;
     border-bottom: 2px solid var(--neon-pink);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s;
+}
+
+th:hover {
+    background: rgba(0, 243, 255, 0.2);
+}
+
+th:after{
+    content: " ↕ ";
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin-left: 5px
 }
 
 td {
@@ -68,3 +82,4 @@ tr:hover {
     color: var(--neon-pink);
     font-weight: bold;
 }
+
