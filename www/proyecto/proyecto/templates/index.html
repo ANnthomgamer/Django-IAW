@@ -33,6 +33,7 @@
             <select name="menu_ventas" id="menu_ventas" class="neon-link" onchange="location = this.value;">
                 <option value="" selected disabled>VENTAS</option>
                 <option value="{% url 'ventas_url' %}">Listado Ventas</option>
+		<option value="{% url 'ventas_alta' %}">Añadir venta</option>
             </select>
 
 	    <!-- Menu de usuarios -->

@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from apps.inicio.views import saludo
-from apps.ventas.views import ventas_views
+from apps.ventas.views import ventas_views, ventas_alta_views
 from apps.productos.views import productos_views, productos_alta_views, productos_modificar_views
 from apps.secciones.views import secciones_views, secciones_alta_views
 from apps.usuarios.views import usuarios_views, usuarios_alta_views, usuarios_modificar_views
@@ -35,6 +35,7 @@ urlpatterns = [
     path('secciones/alta', secciones_alta_views, name='secciones_alta'),
 
     path('ventas/', ventas_views, name='ventas_url'),
+    path('ventas/alta', ventas_alta_views, name='ventas_alta'),
 
     path('usuarios/', usuarios_views, name='usuarios_url'),
     path('usuarios/alta', usuarios_alta_views, name='usuarios_alta'),

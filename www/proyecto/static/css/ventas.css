@@ -1,0 +1,70 @@
+/* static/css/ventas.css */
+
+/* Filtros de fecha */
+.filtros {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid var(--neon-cyan);
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.filtros label {
+    color: var(--neon-cyan);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.filtros input {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--neon-pink);
+    color: white;
+    padding: 8px;
+}
+
+.filtros button {
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    padding: 8px 20px;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.filtros button:hover {
+    background: var(--neon-cyan);
+    color: black;
+}
+
+/* Estilos de tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background: rgba(0, 243, 255, 0.1);
+    color: var(--neon-cyan);
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid var(--neon-pink);
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 0, 255, 0.2);
+}
+
+tr:hover {
+    background: rgba(255, 0, 255, 0.05);
+}
+
+.total-venta {
+    color: var(--neon-pink);
+    font-weight: bold;
+}
