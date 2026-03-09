@@ -9,18 +9,38 @@
 
     <article>
         <p>{{ parrafo }}</p>
+        
+        <!-- FILTRO DE BÚSQUEDA -->
+        <div class="filtros" style="margin-bottom: 20px;">
+            <form method="get" style="display: flex; gap: 10px; align-items: center;">
+                <input type="text" 
+                       name="buscar" 
+                       value="{{ buscar }}" 
+                       placeholder="Buscar por nombre o descripción..."
+                       style="flex: 1; padding: 10px; background: rgba(0,0,0,0.7); border: 1px solid var(--neon-cyan); color: white;">
+                <button type="submit" class="neon-btn">Buscar</button>
+                {% if buscar %}
+                    <a href="{% url 'secciones_url' %}" class="neon-link">Limpiar</a>
+                {% endif %}
+            </form>
+        </div>
 
         {% if secciones %}
-            {% for seccion in secciones %}
-            <div class="producto-card"> <!-- Reutilizamos estilo -->
-                <h3>{{ seccion.nombre }}</h3>
-                <p>{{ seccion.descripcion|default:"Sin descripción" }}</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+                {% for seccion in secciones %}
+                <div class="producto-card">
+                    <h3>{{ seccion.nombre }}</h3>
+                    <p>{{ seccion.descripcion|default:"Sin descripción" }}</p>
+                    <a href="{% url 'secciones_modificar' %}?id={{ seccion.id }}" class="neon-btn" style="margin-top: 10px; display: inline-block;">Modificar</a>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         {% else %}
             <p>No hay secciones registradas</p>
         {% endif %}
-        
+
+        <br>
         <a href="{% url 'secciones_alta' %}" class="neon-link">+ Nueva Sección</a>
     </article>
 {% endblock %}
+

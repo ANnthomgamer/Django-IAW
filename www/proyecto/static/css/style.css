@@ -178,3 +178,27 @@ select option {
     background-color: #050505;                /* Fondo oscuro para la lista */
     color: var(--neon-pink);                  /* Texto rosa */
 }
+
+
+/* Estilos para filtro de búsqueda */
+.filtro-busqueda {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--neon-cyan);
+}
+
+.filtro-busqueda input {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--neon-pink);
+    color: white;
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.filtro-busqueda input:focus {
+    outline: none;
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 10px var(--neon-cyan);
+}

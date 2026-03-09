@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <title>Modificar Sección</title>
+    <link rel="stylesheet" href="{% static 'css/alta.css' %}">
+{% endblock %}
+
+{% block contenido %}
+    <h2>Modificar Sección</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ seccion.id }}">
+
+        <!-- Nombre -->
+        <label for="nombre">Nombre de la sección:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ seccion.nombre }}" required>
+
+        <!-- Descripción -->
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" rows="3">{{ seccion.descripcion|default:'' }}</textarea>
+
+        <!-- Botones -->
+        <button type="submit" class="neon-btn">Actualizar Sección</button>
+        <a href="{% url 'secciones_url' %}" class="neon-link">Cancelar</a>
+    </form>
+{% endblock %}
