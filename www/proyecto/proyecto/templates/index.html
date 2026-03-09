@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Django 2ASIR - {% block titulo %}Inicio{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <header>
+        <h1>DJANGO 2ASIR</h1>
+        <nav>
+            <a href="/" class="neon-link">Inicio</a>
+
+            <!-- Menú de Productos (He quitado las comas y arreglado los IDs) -->
+            <select name="menu_productos" id="menu_productos" class="neon-link" onchange="location = this.value;">
+                <option value="" selected disabled>PRODUCTOS</option>
+                <option value="{% url 'productos_url' %}">Listado de productos</option>
+                <option value="{% url 'productos_alta' %}">Alta de productos</option>
+                <option value="{% url 'productos_modificar' %}">Modificar productos</option>
+            </select>
+
+            <!-- Menú de Secciones -->
+            <select name="menu_secciones" id="menu_secciones" class="neon-link" onchange="location = this.value;">
+                <option value="" selected disabled>SECCIONES</option>
+                <option value="{% url 'secciones_url' %}">Mostrar secciones</option>
+                <option value="{% url 'secciones_alta' %}">Crear sección</option>
+            </select>
+            
+            <!-- Menú de Ventas (He añadido la clase neon-link para que brille) -->
+            <select name="menu_ventas" id="menu_ventas" class="neon-link" onchange="location = this.value;">
+                <option value="" selected disabled>VENTAS</option>
+                <option value="{% url 'ventas_url' %}">Listado Ventas</option>
+            </select>
+
+	    <!-- Menu de usuarios -->
+            <select name="menu_users" id="menu_users" class="neon-link" onchange="location = this.value;">
+                <option value="" selected disabled>USUARIOS</option>
+                <option value="{% url 'usuarios_url' %}">Mostrar usuarios</option>
+                <option value="{% url 'usuarios_alta' %}">Añadir usuario</option>
+                <option value="{% url 'usuarios_modificar' %}">Modificar usuario</option>
+            </select>
+
+        </nav>
+    </header>
+
+    <aside>
+        <!-- Aquí podrías meter un buscador lateral luego -->
+    </aside>
+
+    <article>
+        <!-- Si parrafo está vacío no dejará hueco raro -->
+        {% if parrafo %}<p>{{ parrafo }}</p>{% endif %}
+        
+        {% block contenido %}
+        {% endblock %}
+    </article>
+
+    <footer>
+        <p>Juan Antonio Gil Alba 2 ASIR - 2026</p>
+    </footer>
+</body>
+</html>
+

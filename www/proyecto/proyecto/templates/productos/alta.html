@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+{% load static %}
+
+
+{% block extra_css %}
+    <title>Alta de Producto</title>
+    <link rel="stylesheet" href="{% static 'css/alta.css' %}">
+{% endblock %}
+
+
+{% block contenido %}
+    <h2>Alta de Nuevo Producto</h2>
+    <form method="post">
+        {% csrf_token %}
+        
+        <!-- Nombre del Producto -->
+        <label for="nombre_producto">Nombre del producto</label>
+        <input type="text" id="nombre_producto" name="nombre_producto" placeholder="Nombre del producto" required>
+        
+        <br><br>
+        
+        <!-- Descripción del Producto -->
+        <label for="descripcion">Descripción del producto:</label>
+        <textarea id="descripcion" name="descripcion" rows="3" cols="20" placeholder="Escribe aquí los detalles..." required></textarea>
+        
+        <br><br>
+
+        <!-- Stock -->
+        <label for="stock">Stock</label>
+        <input type="number" id="stock" name="stock" placeholder="Stock" required>
+        
+        <br><br>
+
+        <!-- Sección -->
+        <label for="seccion">Sección</label>
+        <select id="seccion" name="seccion" required>
+            {% for seccion in secciones %}
+                <option value="{{ seccion.id }}">{{ seccion.nombre }}</option>
+            {% endfor %}
+        </select>
+        
+        <br><br>
+
+        <!-- Botón de enviar -->
+        <button type="submit" class="neon-btn">Guardar</button>
+    </form>
+{% endblock %}

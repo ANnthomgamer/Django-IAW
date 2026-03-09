@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block titulo %}Almacén de Datos{% endblock %}
+
+{% block contenido %}
+    <h2 style="color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan); text-transform: uppercase;">
+        > INVENTARIO_SISTEMA_2ASIR
+    </h2>
+    
+    <p>{{ parrafo }}</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px;">
+        
+        <!-- Producto 1 -->
+        <div class="producto-card">
+            <h3>Módulo CPU-X</h3>
+            <p>Procesador cuántico de alta frecuencia.</p>
+            <span class="precio">450.00 €</span>
+            <button class="neon-btn">Adquirir</button>
+        </div>
+
+        <!-- Producto 2 -->
+        <div class="producto-card">
+            <h3>Núcleo RAM</h3>
+            <p>Memoria volátil de 128GB DDR6.</p>
+            <span class="precio">120.00 €</span>
+            <button class="neon-btn">Adquirir</button>
+        </div>
+
+    </div>
+{% endblock %}
+

@@ -1,0 +1,180 @@
+/* static/css/style.css */
+
+/* 1. Variables de color Neón */
+:root {
+    --bg-dark: #050505;
+    --neon-cyan: #00f3ff;
+    --neon-pink: #ff00ff;
+    --text-color: #e0e0e0;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+/* 2. Estilo Base con fondo de cuadrícula */
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    background-image: 
+        linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* 3. Cabecera con Flexbox para el Menú */
+header {
+    display: flex;
+    justify-content: space-between; /* Título izquierda, Nav derecha */
+    align-items: center;           /* Centrado vertical */
+    padding: 1rem 5%;
+    background: rgba(0, 0, 0, 0.9);
+    border-bottom: 2px solid var(--neon-cyan);
+    box-shadow: 0 0 15px var(--neon-cyan);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* 4. Estilo de los botones del menú */
+nav {
+    display: flex;
+    gap: 20px; /* Espacio entre botones */
+}
+
+
+button, select {
+    background: transparent;
+    border: 1px solid var(--neon-pink);
+    color: var(--neon-pink);
+    padding: 8px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s all ease;
+}
+
+button:hover {
+    background: var(--neon-pink);
+    color: white;
+    box-shadow: 0 0 20px var(--neon-pink);
+}
+
+/* 5. Contenido Principal */
+article {
+    max-width: 900px;
+    margin: 60px auto;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+    background: var(--glass);
+    border-left: 4px solid var(--neon-cyan);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+}
+
+p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--neon-cyan);
+}
+
+/* 6. Footer sutil */
+footer {
+    text-align: center;
+    padding: 40px;
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+
+option {
+    background: rgba(0, 0, 0, 0.9);
+
+}
+
+/* Estilo para los nuevos enlaces neón */
+.neon-link {
+    text-decoration: none;   /* Elimina el subrayado azul */
+    color: var(--neon-pink); /* Usa tu variable de color rosa neón */
+    border: 1px solid var(--neon-pink);
+    padding: 10px 20px;
+    margin: 0 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s all ease;
+    display: inline-block;  /* Necesario para que el padding funcione bien */
+}
+
+/* Efecto al pasar el ratón */
+.neon-link:hover {
+    background-color: var(--neon-pink);
+    color: white;
+    box-shadow: 0 0 20px var(--neon-pink); /* Resplandor neón */
+    text-shadow: 0 0 5px white;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/* Tarjetas de producto estilo Terminal */
+.producto-card {
+    background: rgba(255, 255, 255, 0.05); /* Efecto cristal */
+    border: 1px solid var(--neon-pink);
+    padding: 20px;
+    border-radius: 5px;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.producto-card:hover {
+    box-shadow: 0 0 20px var(--neon-pink);
+    transform: translateY(-5px); /* Pequeño salto al pasar el ratón */
+}
+
+.producto-card h3 {
+    color: var(--neon-pink);
+    margin-top: 0;
+    text-transform: uppercase;
+}
+
+.precio {
+    display: block;
+    font-size: 1.5rem;
+    margin: 15px 0;
+    color: #fff;
+    text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+/* Botón específico dentro de la card */
+.neon-btn {
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.neon-btn:hover {
+    background: var(--neon-cyan);
+    color: #000;
+    box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+
+
+select option {
+    background-color: #050505;                /* Fondo oscuro para la lista */
+    color: var(--neon-pink);                  /* Texto rosa */
+}

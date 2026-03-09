@@ -1,0 +1,96 @@
+/* static/css/alta.css */
+
+/* 1. Ajuste del contenedor principal para centrarlo todo */
+article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* Centra horizontalmente el contenido */
+    text-align: center;
+    border-left: none !important; /* Quitamos el borde izquierdo para que sea simétrico */
+    border: 1px solid rgba(0, 243, 255, 0.1); /* Borde sutil opcional para enmarcar */
+    padding: 50px;
+    margin: 40px auto;
+}
+
+/* 2. Título de la sección */
+h2 {
+    color: var(--neon-pink);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border-bottom: 2px solid var(--neon-pink);
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px var(--neon-pink);
+}
+
+/* 3. Estructura del Formulario (Centrado y Simétrico) */
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 500px; /* Ancho de la ficha */
+    margin: 0 auto;   /* Centrado horizontal exacto */
+    text-align: left; /* Mantiene el texto de los campos alineado a la izquierda */
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* 4. Etiquetas (Labels) */
+label {
+    display: block;
+    color: var(--neon-cyan);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+/* 5. Inputs, Textarea y Select del Formulario */
+form input,
+form input[type="number"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--neon-cyan);
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace; /* Estilo terminal */
+    border-radius: 0;
+    transition: 0.3s all ease;
+    box-sizing: border-box; /* Crucial para la simetría del ancho */
+}
+
+/* 6. Efecto Focus: Iluminación Neón al clicar */
+form input:focus, 
+form textarea:focus, 
+form select:focus {
+    outline: none;
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 15px var(--neon-pink);
+    background: rgba(255, 0, 255, 0.05);
+}
+
+/* Estilo para el área de texto */
+form textarea {
+    resize: none;
+}
+
+/* 7. Botón de Guardar (Ancho completo del formulario) */
+form .neon-btn {
+    margin-top: 25px;
+    padding: 18px;
+    font-size: 1.2rem;
+    width: 100%;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
