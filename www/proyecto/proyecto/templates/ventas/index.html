@@ -56,8 +56,8 @@
                 <td>{{ venta.cantidad }}</td>
                 <td>${{ venta.precio_producto }}</td>
                 <td class="total-venta">${{ venta.total }}</td>
-                <td><a href="{% url 'ventas_borrar' %}?id={{ venta.id }}" class="neon-btn-red" onclick="return confirm('¿Seguro que quieres borrar esta venta?');">Borrar</a></td>
                 <td>{{ venta.fecha|date:"d/m/Y H:i" }}</td>
+                <td><a href="{% url 'ventas_borrar' %}?id={{ venta.id }}" class="neon-btn-red" onclick="return confirm('¿Seguro que quieres borrar esta venta?');">Borrar</a></td>
             </tr>
             {% endfor %}
         </tbody>
