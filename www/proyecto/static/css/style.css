@@ -202,3 +202,23 @@ select option {
     border-color: var(--neon-cyan);
     box-shadow: 0 0 10px var(--neon-cyan);
 }
+
+
+.neon-btn-red {
+    background: transparent;
+    border: 1px solid red; /* color base */
+    color: red;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s;
+    display: inline-block;
+    text-align: center;
+}
+
+.neon-btn-red:hover {
+    background: red;
+    color: white;
+    box-shadow: 0 0 15px red;
+}

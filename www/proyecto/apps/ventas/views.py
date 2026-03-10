@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.http import HttpResponse
 from django.template import Template, Context
@@ -105,5 +105,16 @@ def ventas_alta_views(request):
     return render(request, 'ventas/alta.html', datos)
 
 
-
 # return HttpResponse(documento)
+
+
+def ventas_borrar_views(request):
+    """
+    Borra una venta específica según su ID.
+    """
+    venta_id = request.GET.get('id')
+    if venta_id:
+        venta = get_object_or_404(Venta, id=venta_id)
+        venta.delete()
+
+    return redirect('ventas_url')  # Redirige a la lista de ventas
