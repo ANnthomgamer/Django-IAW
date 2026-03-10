@@ -9,7 +9,22 @@
 
     <article>
         <p>{{ parrafo }}</p>
-    
+        <!-- FILTRO DE BÚSQUEDA -->
+        <div class="filtros" style="margin-bottom: 20px;">
+            <form method="get" style="display: flex; gap: 10px; align-items: center;">
+                <input type="text" 
+                       name="buscar" 
+                       value="{{ buscar }}" 
+                       placeholder="Buscar producto..."
+                       style="flex: 1; padding: 10px; background: rgba(0,0,0,0.7); border: 1px solid var(--neon-cyan); color: white;">
+
+                <button type="submit" class="neon-btn">Buscar</button>
+
+        {% if buscar %}
+            <a href="{% url 'productos_url' %}" class="neon-link">Limpiar</a>
+        {% endif %}
+    </form>
+</div>
         {% if productos %}
             {% for producto in productos %}
             <div class="producto-card">

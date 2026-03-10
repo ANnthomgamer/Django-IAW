@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import Template, Context
 from .models import Producto # Importar el modelo
 from apps.secciones.models import Seccion
-
+from django.db.models import Q
 
 # Create your views here.
  
@@ -21,10 +21,22 @@ def productos_views(request):
     
     documento = planti.render(ctx)
     """
+    buscar = request.GET.get('buscar', '')
+
     productos = Producto.objects.all()
+
+    if buscar:
+        productos = productos.filter(
+            Q(nombre__icontains=buscar) |
+            Q(descripcion__icontains=buscar)
+        )
+
+
+
     datos = {
         'parrafo': 'PRODUCTOS',
-        'productos': productos  # Pasar a la plantilla
+        'productos': productos,  # Pasar a la plantilla
+        'buscar': buscar
     }
 
 
