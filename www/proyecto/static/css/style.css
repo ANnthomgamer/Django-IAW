@@ -204,9 +204,10 @@ select option {
 }
 
 
+/* Botón rojo neón estilo hover */
 .neon-btn-red {
     background: transparent;
-    border: 1px solid red; /* color base */
+    border: 1px solid red;
     color: red;
     padding: 10px 20px;
     cursor: pointer;
