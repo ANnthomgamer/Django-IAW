@@ -40,6 +40,19 @@
             {% endfor %}
         </select>
 
+
+        <!-- Proveedores -->
+        <label for="proveedor">Proveedor</label>
+        <select id="proveedor" name="proveedor">
+	    <option value="">-- Si proveedor --</option>
+            {% for proveedor in proveedores %}
+	        <option value="{{ proveedor.id }}" {% if producto.proveedor_id == proveedor.id %}selected{% endif %}>
+            {% endfor %}
+        </select>
+        
+        <br><br>
+
+
         <!-- Botones -->
         <button type="submit" class="neon-btn">Actualizar Producto</button>
         <a href="{% url 'productos_url' %}" class="neon-link">Cancelar</a>

@@ -48,6 +48,23 @@
         
         <br><br>
 
+
+
+        <!-- Proveedores -->
+        <label for="proveedor">Proveedor</label>
+        <select id="proveedor" name="proveedor">
+	    <option value="">----------</option>
+            {% for proveedor in proveedores %}
+                <option value="{{ proveedor.id }}">{{ proveedor.nombre }}</option>
+            {% endfor %}
+        </select>
+        
+        <br><br>
+
+
+
+
+
         <!-- Botón de enviar -->
         <button type="submit" class="neon-btn">Guardar</button>
     </form>
