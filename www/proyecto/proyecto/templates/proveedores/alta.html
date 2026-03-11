@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <title>Alta de Proveedor</title>
+    <link rel="stylesheet" href="{% static 'css/alta.css' %}">
+{% endblock %}
+
+{% block contenido %}
+    <h2>Registrar Nuevo Proveedor</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Nombre (obligatorio) -->
+        <label for="nombre">Nombre del proveedor:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ej: Tecnologías SL" required>
+
+        <!-- CIF (obligatorio) -->
+        <label for="cif">CIF/NIF:</label>
+        <input type="text" id="cif" name="cif" placeholder="B-12345678" required>
+
+        <!-- Dirección -->
+        <label for="direccion">Dirección:</label>
+        <textarea id="direccion" name="direccion" rows="2" placeholder="Calle, número, ciudad..."></textarea>
+
+        <!-- Teléfono -->
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="+34 900 000 000">
+
+        <!-- Email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="contacto@proveedor.com">
+
+        <!-- Web -->
+        <label for="web">Sitio web:</label>
+        <input type="url" id="web" name="web" placeholder="https://www.proveedor.com">
+
+        <!-- Persona de contacto -->
+        <label for="contacto">Persona de contacto:</label>
+        <input type="text" id="contacto" name="contacto" placeholder="Nombre del comercial">
+
+        <!-- Notas -->
+        <label for="notas">Notas adicionales:</label>
+        <textarea id="notas" name="notas" rows="3" placeholder="Información relevante..."></textarea>
+
+        <!-- Botones -->
+        <button type="submit" class="neon-btn">Guardar Proveedor</button>
+        <a href="{% url 'proveedores_url' %}" class="neon-link">Cancelar</a>
+    </form>
+{% endblock %}

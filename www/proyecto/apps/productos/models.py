@@ -1,4 +1,6 @@
 from django.db import models
+from apps.secciones.models import Seccion
+from apps.proveedores.models import Proveedor
 
 # Create your models here.
 
@@ -9,6 +11,15 @@ class Producto(models.Model):
     stock = models.IntegerField(default=0)
     # Relación con secciones (opcional)
     seccion = models.ForeignKey('secciones.Seccion', on_delete=models.SET_NULL, null=True, blank=True)
+    proveedor = models.ForeignKey(
+        Proveedor, 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True,
+        related_name='productos'
+    )
+
+
 
     def __str__(self):
         return f"{self.nombre} - ${self.precio}"

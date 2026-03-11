@@ -43,6 +43,14 @@
                 <option value="{% url 'usuarios_alta' %}">Añadir usuario</option>
                 <option value="{% url 'usuarios_modificar' %}">Modificar usuario</option>
             </select>
+	    <!-- Menú de Proveedores (NUEVO) -->
+	    <select name="menu_proveedores" id="menu_proveedores" class="neon-link" onchange="location = this.value;">
+  	 	<option value="" selected disabled>PROVEEDORES</option>
+	        <option value="{% url 'proveedores_url' %}">Listado proveedores</option>
+    		<option value="{% url 'proveedores_alta' %}">Alta proveedores</option>
+    		<option value="{% url 'proveedores_modificar' %}">Modificar proveedor</option>	
+	    </select>
+
 
         </nav>
     </header>

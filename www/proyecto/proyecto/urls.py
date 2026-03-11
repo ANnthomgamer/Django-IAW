@@ -21,6 +21,7 @@ from apps.ventas.views import ventas_views, ventas_alta_views, ventas_borrar_vie
 from apps.productos.views import productos_views, productos_alta_views, productos_modificar_views
 from apps.secciones.views import secciones_views, secciones_alta_views, secciones_modificar_views
 from apps.usuarios.views import usuarios_views, usuarios_alta_views, usuarios_modificar_views
+from apps.proveedores.views import proveedores_views, proveedores_alta_views, proveedores_modificar_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -44,4 +45,9 @@ urlpatterns = [
     path('usuarios/modificar', usuarios_modificar_views, name='usuarios_modificar'),
 
     path('easter_egg', easter_egg),
+
+    path('proveedores/', proveedores_views, name='proveedores_url'),
+    path('proveedores/alta', proveedores_alta_views, name='proveedores_alta'),
+    path('proveedores/modificar', proveedores_modificar_views, name='proveedores_modificar'),
+
 ]

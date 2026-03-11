@@ -1,0 +1,85 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block titulo %}Proveedores del Sistema{% endblock %}
+
+{% block extra_css %}
+    <style>
+        .proveedor-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--neon-pink);
+            padding: 20px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .proveedor-card:hover {
+            box-shadow: 0 0 20px var(--neon-pink);
+            transform: translateY(-5px);
+        }
+        .proveedor-card h3 {
+            color: var(--neon-pink);
+            margin-top: 0;
+        }
+        .proveedor-card .cif {
+            color: var(--neon-cyan);
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+{% endblock %}
+
+{% block contenido %}
+    <h2 style="color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan);">
+        > GESTIÓN DE PROVEEDORES
+    </h2>
+
+    <article>
+        <p>{{ parrafo }}</p>
+
+        <!-- FILTRO DE BÚSQUEDA -->
+        <div class="filtros" style="margin-bottom: 20px;">
+            <form method="get" style="display: flex; gap: 10px; align-items: center;">
+                <input type="text"
+                       name="buscar"
+                       value="{{ buscar }}"
+                       placeholder="Buscar por nombre, CIF, email o contacto..."
+                       style="flex: 1; padding: 10px; background: rgba(0,0,0,0.7); border: 1px solid var(--neon-cyan); color: white;">
+                <button type="submit" class="neon-btn">Buscar</button>
+                {% if buscar %}
+                    <a href="{% url 'proveedores_url' %}" class="neon-link">Limpiar</a>
+                {% endif %}
+            </form>
+        </div>
+
+        {% if proveedores %}
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px;">
+                {% for proveedor in proveedores %}
+                <div class="proveedor-card">
+                    <h3>{{ proveedor.nombre }}</h3>
+                    <p class="cif">{{ proveedor.cif }}</p>
+                    
+                    <p><strong>📞 Teléfono:</strong> {{ proveedor.telefono|default:"—" }}</p>
+                    <p><strong>✉️ Email:</strong> {{ proveedor.email|default:"—" }}</p>
+                    {% if proveedor.web %}
+                        <p><strong>🌐 Web:</strong> <a href="{{ proveedor.web }}" target="_blank" style="color: var(--neon-cyan);">{{ proveedor.web }}</a></p>
+                    {% endif %}
+                    <p><strong>👤 Contacto:</strong> {{ proveedor.contacto|default:"—" }}</p>
+                    <p><strong>📍 Dirección:</strong> {{ proveedor.direccion|default:"—"|truncatechars:50 }}</p>
+                    {% if proveedor.notas %}
+                        <p><small>📝 {{ proveedor.notas|truncatechars:100 }}</small></p>
+                    {% endif %}
+                    
+                    <div style="margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                        <a href="{% url 'proveedores_modificar' %}?id={{ proveedor.id }}" class="neon-btn" style="padding: 5px 15px;">✏️ Modificar</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No hay proveedores registrados</p>
+        {% endif %}
+
+        <br>
+        <a href="{% url 'proveedores_alta' %}" class="neon-link">+ Nuevo Proveedor</a>
+    </article>
+{% endblock %}
