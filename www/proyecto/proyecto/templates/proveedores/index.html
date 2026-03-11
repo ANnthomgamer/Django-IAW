@@ -3,31 +3,6 @@
 
 {% block titulo %}Proveedores del Sistema{% endblock %}
 
-{% block extra_css %}
-    <style>
-        .proveedor-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--neon-pink);
-            padding: 20px;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        .proveedor-card:hover {
-            box-shadow: 0 0 20px var(--neon-pink);
-            transform: translateY(-5px);
-        }
-        .proveedor-card h3 {
-            color: var(--neon-pink);
-            margin-top: 0;
-        }
-        .proveedor-card .cif {
-            color: var(--neon-cyan);
-            font-family: monospace;
-            font-size: 0.9rem;
-        }
-    </style>
-{% endblock %}
-
 {% block contenido %}
     <h2 style="color: var(--neon-cyan); text-shadow: 0 0 10px var(--neon-cyan);">
         > GESTIÓN DE PROVEEDORES
@@ -36,13 +11,13 @@
     <article>
         <p>{{ parrafo }}</p>
 
-        <!-- FILTRO DE BÚSQUEDA -->
+        <!-- FILTRO DE BÚSQUEDA (si lo tienes) -->
         <div class="filtros" style="margin-bottom: 20px;">
             <form method="get" style="display: flex; gap: 10px; align-items: center;">
                 <input type="text"
                        name="buscar"
                        value="{{ buscar }}"
-                       placeholder="Buscar por nombre, CIF, email o contacto..."
+                       placeholder="Buscar por nombre, CIF o contacto..."
                        style="flex: 1; padding: 10px; background: rgba(0,0,0,0.7); border: 1px solid var(--neon-cyan); color: white;">
                 <button type="submit" class="neon-btn">Buscar</button>
                 {% if buscar %}
@@ -51,23 +26,38 @@
             </form>
         </div>
 
+        <!-- BOTONES DE ORDENACIÓN -->
+        <div style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; flex-wrap: wrap;">
+            <span style="color: var(--neon-cyan);">Ordenar:</span>
+            <button onclick="window.ordenadorProveedores.ordenar('nombre')"
+                    class="neon-btn orden-btn" data-campo="nombre" style="padding: 5px 15px;">
+                Nombre ↑
+            </button>
+            <button onclick="window.ordenadorProveedores.ordenar('cif')"
+                    class="neon-btn orden-btn" data-campo="cif" style="padding: 5px 15px;">
+                CIF ↑
+            </button>
+            <button onclick="window.ordenadorProveedores.ordenar('contacto')"
+                    class="neon-btn orden-btn" data-campo="contacto" style="padding: 5px 15px;">
+                Contacto ↑
+            </button>
+        </div>
+
         {% if proveedores %}
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px;">
+            <!-- CONTENEDOR CON ID -->
+            <div id="proveedores-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px;">
                 {% for proveedor in proveedores %}
                 <div class="proveedor-card">
-                    <h3>{{ proveedor.nombre }}</h3>
-                    <p class="cif">{{ proveedor.cif }}</p>
+                    <!-- CLASES PARA ORDENACIÓN -->
+                    <h3 class="nombre-proveedor">{{ proveedor.nombre }}</h3>
+                    <p class="cif-proveedor">{{ proveedor.cif }}</p>
                     
                     <p><strong>📞 Teléfono:</strong> {{ proveedor.telefono|default:"—" }}</p>
                     <p><strong>✉️ Email:</strong> {{ proveedor.email|default:"—" }}</p>
                     {% if proveedor.web %}
                         <p><strong>🌐 Web:</strong> <a href="{{ proveedor.web }}" target="_blank" style="color: var(--neon-cyan);">{{ proveedor.web }}</a></p>
                     {% endif %}
-                    <p><strong>👤 Contacto:</strong> {{ proveedor.contacto|default:"—" }}</p>
-                    <p><strong>📍 Dirección:</strong> {{ proveedor.direccion|default:"—"|truncatechars:50 }}</p>
-                    {% if proveedor.notas %}
-                        <p><small>📝 {{ proveedor.notas|truncatechars:100 }}</small></p>
-                    {% endif %}
+                    <p class="contacto-proveedor"><strong>👤 Contacto:</strong> {{ proveedor.contacto|default:"—" }}</p>
                     
                     <div style="margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
                         <a href="{% url 'proveedores_modificar' %}?id={{ proveedor.id }}" class="neon-btn" style="padding: 5px 15px;">✏️ Modificar</a>
@@ -82,4 +72,7 @@
         <br>
         <a href="{% url 'proveedores_alta' %}" class="neon-link">+ Nuevo Proveedor</a>
     </article>
+
+    <!-- Script de ordenación -->
+    <script src="{% static 'js/ordenacion.js' %}"></script>
 {% endblock %}

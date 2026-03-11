@@ -1,4 +1,4 @@
-// static/js/ordenacion.js - Version DEBUG para stock
+// static/js/ordenacion.js
 
 class OrdenadorTabla {
     constructor(containerSelector, options = {}) {
@@ -15,32 +15,30 @@ class OrdenadorTabla {
             nombre: 'h3',
             precio: '.precio',
             stock: '.stock',
-	    proveedor: '.proveedor',
-	    seccion: '.seccion',
+            proveedor: '.proveedor',
+            seccion: '.seccion',
+            descripcion: '.descripcion',
+            cif: '.cif',
+            contacto: '.contacto',
             fecha: '.fecha'
         };
 
         console.log("OK: Ordenador inicializado para:", containerSelector);
         console.log("Items encontrados:", this.items.length);
-        
-        if (this.items.length > 0) {
-            console.log("Primer item - HTML:", this.items[0].innerHTML);
-            console.log("Primer item - Stock:", this.items[0].querySelector(this.selectores.stock)?.textContent);
-        }
 
         this.actualizarIndicadores();
     }
 
     ordenar(campo) {
         console.log("Ordenando por:", campo);
-        
+
         if (campo === this.campoActual) {
             this.direccionActual = this.direccionActual === 'asc' ? 'desc' : 'asc';
         } else {
             this.campoActual = campo;
             this.direccionActual = 'asc';
         }
-        
+
         console.log("Direccion:", this.direccionActual);
 
         this.items.sort((a, b) => {
@@ -50,66 +48,54 @@ class OrdenadorTabla {
                 case 'nombre':
                     aValor = a.querySelector(this.selectores.nombre)?.textContent || '';
                     bValor = b.querySelector(this.selectores.nombre)?.textContent || '';
-                    console.log("Nombre A:", aValor, "B:", bValor);
                     break;
-                    
+
                 case 'precio':
                     aValor = this.parsePrecio(a.querySelector(this.selectores.precio)?.textContent);
                     bValor = this.parsePrecio(b.querySelector(this.selectores.precio)?.textContent);
-                    console.log("Precio A:", aValor, "B:", bValor);
                     break;
-                    
+
                 case 'stock':
-                    const stockElemA = a.querySelector(this.selectores.stock);
-                    const stockElemB = b.querySelector(this.selectores.stock);
-                    
-                    console.log("Stock A - Elemento:", stockElemA);
-                    console.log("Stock B - Elemento:", stockElemB);
-                    
-                    if (!stockElemA || !stockElemB) {
-                        console.warn("ADVERTENCIA: No se encontro elemento stock en algun item");
-                    }
-                    
-                    const stockTextA = stockElemA?.textContent || '0';
-                    const stockTextB = stockElemB?.textContent || '0';
-                    
-                    console.log("Texto bruto A:", stockTextA);
-                    console.log("Texto bruto B:", stockTextB);
-                    
-                    aValor = this.parseStock(stockTextA);
-                    bValor = this.parseStock(stockTextB);
-                    
-                    console.log("Valor parseado A:", aValor);
-                    console.log("Valor parseado B:", bValor);
+                    aValor = this.parseStock(a.querySelector(this.selectores.stock)?.textContent);
+                    bValor = this.parseStock(b.querySelector(this.selectores.stock)?.textContent);
                     break;
 
-		case 'proveedor':
-		    aValor = a.querySelector(this.selectores.proveedor)?.textContent || '';
-		    bValor = b.querySelector(this.selectores.proveedor)?.textContent || '';
-		    // Limpiar el texto "Proveedor: " para ordenar solo por el nombre
-		    aValor = aValor.replace('Proveedor:', '').trim();
-		    bValor = bValor.replace('Proveedor:', '').trim();
-		    console.log("Proveedor A:", aValor, "B:", bValor);
-		    break;
+                case 'proveedor':
+                    aValor = a.querySelector(this.selectores.proveedor)?.textContent || '';
+                    bValor = b.querySelector(this.selectores.proveedor)?.textContent || '';
+                    aValor = aValor.replace('Proveedor:', '').trim();
+                    bValor = bValor.replace('Proveedor:', '').trim();
+                    break;
 
-		case 'seccion':
-		    aValor = a.querySelector(this.selectores.seccion)?.textContent || '';
-		    bValor = b.querySelector(this.selectores.seccion)?.textContent || '';
-		    // Limpiar el texto "Sección: " para ordenar solo por el nombre
-		    aValor = aValor.replace('Sección:', '').trim();
-		    bValor = bValor.replace('Sección:', '').trim();
-		    console.log("Sección A:", aValor, "B:", bValor);
-		    break;
+                case 'seccion':
+                    aValor = a.querySelector(this.selectores.seccion)?.textContent || '';
+                    bValor = b.querySelector(this.selectores.seccion)?.textContent || '';
+                    aValor = aValor.replace('Sección:', '').replace('Seccion:', '').trim();
+                    bValor = bValor.replace('Sección:', '').replace('Seccion:', '').trim();
+                    break;
 
+                case 'descripcion':
+                    aValor = a.querySelector(this.selectores.descripcion)?.textContent || '';
+                    bValor = b.querySelector(this.selectores.descripcion)?.textContent || '';
+                    break;
 
+                case 'cif':
+                    aValor = a.querySelector(this.selectores.cif)?.textContent || '';
+                    bValor = b.querySelector(this.selectores.cif)?.textContent || '';
+                    break;
 
+                case 'contacto':
+                    aValor = a.querySelector(this.selectores.contacto)?.textContent || '';
+                    bValor = b.querySelector(this.selectores.contacto)?.textContent || '';
+                    aValor = aValor.replace('Contacto:', '').trim();
+                    bValor = bValor.replace('Contacto:', '').trim();
+                    break;
 
-                    
                 case 'fecha':
                     aValor = this.parseFecha(a.querySelector(this.selectores.fecha)?.textContent);
                     bValor = this.parseFecha(b.querySelector(this.selectores.fecha)?.textContent);
                     break;
-                    
+
                 default:
                     return 0;
             }
@@ -128,19 +114,12 @@ class OrdenadorTabla {
 
     parsePrecio(texto) {
         if (!texto) return 0;
-        const valor = parseFloat(texto.replace(/[$]/g, '').replace(',', '')) || 0;
-        console.log("parsePrecio:", texto, "->", valor);
-        return valor;
+        return parseFloat(texto.replace(/[$]/g, '').replace(',', '')) || 0;
     }
 
     parseStock(texto) {
         if (!texto) return 0;
-        const soloNumeros = texto.replace(/[^0-9]/g, '');
-        console.log("soloNumeros:", soloNumeros);
-        
-        const valor = parseInt(soloNumeros) || 0;
-        console.log("parseStock resultado:", valor);
-        return valor;
+        return parseInt(texto.replace(/[^0-9]/g, '')) || 0;
     }
 
     parseFecha(texto) {
@@ -168,7 +147,10 @@ class OrdenadorTabla {
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Inicializando ordenadores...");
-    
+
+    // ============================================
+    // PRODUCTOS
+    // ============================================
     if (document.querySelector('#productos-container')) {
         console.log("Contenedor de productos encontrado");
         window.ordenadorProductos = new OrdenadorTabla('#productos-container', {
@@ -177,11 +159,46 @@ document.addEventListener('DOMContentLoaded', function() {
                 nombre: 'h3',
                 precio: '.precio',
                 stock: '.stock',
-		seccion: '.seccion',
-		proveedor: '.proveedor'
+                proveedor: '.proveedor',
+                seccion: '.seccion'
             }
         });
-    } else {
-        console.warn("ADVERTENCIA: No se encontro #productos-container");
+    }
+
+    // ============================================
+    // SECCIONES
+    // ============================================
+    if (document.querySelector('#secciones-container')) {
+        console.log("Contenedor de secciones encontrado");
+        window.ordenadorSecciones = new OrdenadorTabla('#secciones-container', {
+            campoInicial: 'nombre',
+            selectores: {
+                nombre: '.nombre-seccion',
+                descripcion: '.descripcion-seccion'
+            }
+        });
+    }
+
+    // ============================================
+    // PROVEEDORES
+    // ============================================
+    if (document.querySelector('#proveedores-container')) {
+        console.log("Contenedor de proveedores encontrado");
+        window.ordenadorProveedores = new OrdenadorTabla('#proveedores-container', {
+            campoInicial: 'nombre',
+            selectores: {
+                nombre: '.nombre-proveedor',
+                cif: '.cif-proveedor',
+                contacto: '.contacto-proveedor'
+            }
+        });
+    }
+
+    // ============================================
+    // VENTAS (pendiente de implementar con tabla)
+    // ============================================
+    if (document.querySelector('table')) {
+        console.log("Tabla de ventas encontrada (pendiente de implementar)");
+        // Aquí iría la inicialización para ventas cuando adaptemos el script a tablas
     }
 });
