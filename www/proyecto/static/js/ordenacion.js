@@ -15,6 +15,8 @@ class OrdenadorTabla {
             nombre: 'h3',
             precio: '.precio',
             stock: '.stock',
+	    proveedor: '.proveedor',
+	    seccion: '.seccion',
             fecha: '.fecha'
         };
 
@@ -80,6 +82,28 @@ class OrdenadorTabla {
                     console.log("Valor parseado A:", aValor);
                     console.log("Valor parseado B:", bValor);
                     break;
+
+		case 'proveedor':
+		    aValor = a.querySelector(this.selectores.proveedor)?.textContent || '';
+		    bValor = b.querySelector(this.selectores.proveedor)?.textContent || '';
+		    // Limpiar el texto "Proveedor: " para ordenar solo por el nombre
+		    aValor = aValor.replace('Proveedor:', '').trim();
+		    bValor = bValor.replace('Proveedor:', '').trim();
+		    console.log("Proveedor A:", aValor, "B:", bValor);
+		    break;
+
+		case 'seccion':
+		    aValor = a.querySelector(this.selectores.seccion)?.textContent || '';
+		    bValor = b.querySelector(this.selectores.seccion)?.textContent || '';
+		    // Limpiar el texto "Sección: " para ordenar solo por el nombre
+		    aValor = aValor.replace('Sección:', '').trim();
+		    bValor = bValor.replace('Sección:', '').trim();
+		    console.log("Sección A:", aValor, "B:", bValor);
+		    break;
+
+
+
+
                     
                 case 'fecha':
                     aValor = this.parseFecha(a.querySelector(this.selectores.fecha)?.textContent);
@@ -152,7 +176,9 @@ document.addEventListener('DOMContentLoaded', function() {
             selectores: {
                 nombre: 'h3',
                 precio: '.precio',
-                stock: '.stock'
+                stock: '.stock',
+		seccion: '.seccion',
+		proveedor: '.proveedor'
             }
         });
     } else {

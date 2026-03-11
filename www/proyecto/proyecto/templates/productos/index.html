@@ -41,6 +41,15 @@
                     class="neon-btn orden-btn" data-campo="stock" style="padding: 5px 15px;">
                 Stock ↑
             </button>
+            <button onclick="window.ordenadorProductos.ordenar('proveedor')"class="neon-btn orden-btn" data-campo="proveedor" style="padding: 5px 15px;">
+                Proveedor ↑
+    	    </button>
+	    <button onclick="window.ordenadorProductos.ordenar('seccion')" class="neon-btn orden-btn" data-campo="seccion" style="padding: 5px 15px;">
+                Sección ↑
+	    </button>
+
+
+
         </div>
 
         {% if productos %}
@@ -52,7 +61,8 @@
                     <p>{{ producto.descripcion }}</p>
                     <span class="precio">${{ producto.precio }}</span>
                     <p class="stock">Stock: {{ producto.stock }}</p>
-                    <p>Proveedor: {{ producto.proveedor.nombre }}</p>
+                    <p class="seccion">Seccion: {{ producto.seccion.nombre }}</p>
+                    <p class="proveedor">Proveedor: {{ producto.proveedor.nombre }}</p>
                     <a href="{% url 'productos_modificar' %}?id={{ producto.id }}" class="neon-btn" style="margin-top: 10px; display: inline-block;">Modificar</a>
                 </div>
                 {% endfor %}
