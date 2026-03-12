@@ -1,7 +1,46 @@
 {% extends "index.html" %}
+{% load static %}
 
-{% block titulo %}Configuración de la empresa{% endblock %}
+{% block extra_css %}
+    <title>Modificar empresa</title>
+    <link rel="stylesheet" href="{% static 'css/alta.css' %}">
+{% endblock %}
 
 {% block contenido %}
+    <h2>Modificar empresa</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden", name="id", value="{{ empresa.id }}">
+
+        <!-- Nombre -->
+        <label for="nombre">Nuevo nombre de la empresa:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ empresa.nombre }}">
+
+
+        <!-- CIF -->
+        <label for="cif">CIF:</label>
+        <input type="text" id="cif" name="cif" value="{{ empresa.cif }}">
+
+
+        <!-- Domicilio -->
+        <label for="nombre">Domicilio:</label>
+        <input type="text" id="domicilio" name="domicilio" value="{{ empresa.domicilio }}">
+
+
+        <!-- Correo -->
+        <label for="nombre">EMAIL:</label>
+        <input type="text" id="mail" name="mail" value="{{ empresa.mail }}">
+
+
+        <!-- Telefono -->
+        <label for="nombre">Telefono:</label>
+        <input type="text" id="telefono" name="telefono" value="{{ empresa.mail }}">
+
+        <button type="submit" class="neon-btn">Actualizar empresa</button>
+        <a href="{% url 'config_url' %}" class="neon-link">Cancelar</a>
+
+
+    </form>
 
 {% endblock %}
