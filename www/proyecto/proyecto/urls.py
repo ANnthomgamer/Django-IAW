@@ -21,6 +21,7 @@ from apps.ventas.views import ventas_views, ventas_alta_views, ventas_borrar_vie
 from apps.productos.views import productos_views, productos_alta_views, productos_modificar_views
 from apps.secciones.views import secciones_views, secciones_alta_views, secciones_modificar_views
 from apps.usuarios.views import usuarios_views, usuarios_alta_views, usuarios_modificar_views
+from apps.config.views import config_views, config_modificar_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -44,4 +45,8 @@ urlpatterns = [
     path('usuarios/modificar', usuarios_modificar_views, name='usuarios_modificar'),
 
     path('easter_egg', easter_egg),
+
+    path('config/', config_views, name='config_url'),
+    path('config/modificar', config_modificar_views, name='config_modificar'),
+
 ]

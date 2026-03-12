@@ -44,6 +44,22 @@
                 <option value="{% url 'usuarios_modificar' %}">Modificar usuario</option>
             </select>
 
+
+
+
+        <!-- MENU CONFIG EMPRESA -->
+            <select name="menu_config" id="menu_config" class="neon-link" onchange="location = this.value;">
+                <option value="" selected disabled>EMPRESA</option>
+                <option value="{% url 'config_url' %}">Informacion de la empresa</option>
+                <option value="{% url 'config_modificar' %}">Modificar empresa</option>
+            </select>
+
+
+
+
+
+
+
         </nav>
     </header>
 
